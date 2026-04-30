@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Surprise 🎉</title>
+
+<style>
+body {
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  overflow-x: hidden;
+display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+button {
+  background: #ff4d6d;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+input {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+#quizBox, #buttons, #photo, #gameBox, #message {
+  display: none;
+  margin-top: 20px;
+}
+
+img {
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff4d6d;
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  top: 0;
+  font-size: 20px;
+  animation: fall 3s linear forwards;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh); opacity: 0; }
+}
+
+/* 💖 floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: #ff4d6d;
+  animation: floatUp 7s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 style="font-size: 36px; margin-top: 25vh;">
+🎉 Birthday Surprise for my Queen 🎉
+</h1>
+
+<!-- PASSWORD -->
+<div id="passwordBox">
+  <p>🔐 Enter password to continue pleaseeee:</p>
+  <input id="pass">
+  <button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quizBox">
+  <p>🧠 Best Friend Quiz 😘</p>
+
+  <p>1. Who is the best duo ever?</p>
+  <input id="q1"><br>
+
+  <p>2. Our funniest memory word?</p>
+  <input id="q2"><br>
+
+  <button onclick="checkQuiz()">Submit</button>
+</div>
+
+<!-- MESSAGE -->
+<div id="message"></div>
+
+<!-- BUTTONS -->
+<div id="buttons">
+  <button onclick="startMusic()">🎵 Start Music</button>
+  <button onclick="gift()">🎁 Open ur Gift</button>
+  <button onclick="startGame()">🎮 Let's Play Click Game</button>
+<button onclick="window.location.href='game.html'">
+ 💗Catch My Heart Game
+</button>
+</div>
+
+<!-- PHOTO -->
+<div id="photo">
+  <h3>💖 Our Memory</h3>
+  <img src="https://i.imgur.com/qnDZQ1F.jpeg">
+</div>
+
+<!-- GAME -->
+<div id="gameBox">
+  <p>🎮 Click Game: Reach 100!</p>
+  <h2 id="score">0</h2>
+  <button onclick="clickGame()">Click Me!</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// 💖 floating hearts
+function createHearts(){
+  setInterval(() => {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "💖";
+
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (Math.random() * 12 + 8) + "px";
+    h.style.opacity = 0.4; // 👈 makes it subtle
+
+    document.body.appendChild(h);
+
+    setTimeout(() => h.remove(), 6000);
+  }, 800); // 👈 slower spawn = cleaner look
+}
+createHearts();
+
+
+
+// PASSWORD
+function checkPass(){
+  let val = document.getElementById("pass").value.toLowerCase();
+
+  if(val === "snehu"){
+    document.getElementById("passwordBox").style.display = "none";
+    document.getElementById("quizBox").style.display = "block";
+  } else {
+    alert("❌ Wrong password babeee ☹");
+  }
+}
+
+
+// QUIZ
+function checkQuiz(){
+  let a1 = document.getElementById("q1").value.toLowerCase();
+  let a2 = document.getElementById("q2").value.toLowerCase();
+
+  if(a1 === "us" && a2 === "meow"){
+    document.getElementById("quizBox").style.display = "none";
+
+    document.getElementById("message").style.display = "block";
+    document.getElementById("message").innerHTML = `
+      <h2>🎂 Happy Birthday Nonodinyyy my babuu 💖</h2>
+      <p>
+      You are my best friend, my chaos partner, and my sister 😭💖<br><br>
+      Thanks for every laugh, memory, and support 😂✨<br><br>
+      Life would honestly be boring without you 🌸<br><br>
+      Stay amazing always 💫
+      </p>
+    `;
+
+    document.getElementById("buttons").style.display = "block";
+    document.getElementById("photo").style.display = "block";
+
+    // 💥 confetti burst on unlock
+    for(let i=0;i<300;i++){
+      let c = document.createElement("div");
+      c.className = "confetti";
+      c.style.left = Math.random()*100 + "vw";
+      c.innerHTML = "❤️";
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),3000);
+    }
+
+  } else {
+    alert("Nehiii wrongggg!");
+  }
+}
+
+
+// MUSIC
+function startMusic(){
+  let music = document.getElementById("music");
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+  let fade = setInterval(() => {
+    if(vol < 1){
+      vol += 0.05;
+      music.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+}
+
+
+// GIFTS
+function gift(){
+  alert("🎁 Unlimited hugs + friendship unlocked 💖");
+
+  // 💥 small burst (controlled, not crazy)
+  for(let i=0;i<80;i++){
+    let h = document.createElement("div");
+    h.className = "confetti";
+
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = (Math.random() * 18 + 10) + "px";
+    h.style.opacity = 0.9;
+
+    h.innerHTML = "🤗";
+    document.body.appendChild(h);
+
+    setTimeout(()=>h.remove(), 3000);
+  }
+}
+
+
+// GAME
+let score = 0;
+
+function startGame(){
+  document.getElementById("gameBox").style.display = "block";
+}
+
+function clickGame(){
+  score++;
+  document.getElementById("score").innerText = score;
+
+  if(score == 100){
+    alert("🎉 You win! Best friend forever 💯");
+  }
+}
+
+</script>
+
+</body>
+</html>
