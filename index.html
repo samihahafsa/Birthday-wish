@@ -256,6 +256,21 @@ let score = 0;
 
 function startGame(){
   document.getElementById("gameBox").style.display = "block";
+  let game = document.getElementById("gameBox");
+
+  game.style.display = "block";
+
+  // 📜 smooth scroll
+  game.scrollIntoView({ behavior: "smooth" });
+
+  // 💬 temporary hint text
+  let hint = document.createElement("p");
+  hint.innerText = "👇 click here to play 💖";
+  hint.style.color = "white";
+
+  game.prepend(hint);
+
+  setTimeout(() => hint.remove(), 3000);
 }
 
 function clickGame(){
