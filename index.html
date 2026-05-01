@@ -4,6 +4,9 @@
 <title>Birthday Surprise 🎉</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+  html {
+  scroll-behavior: smooth;
+}
 body {
   background: linear-gradient(135deg, #ffafbd, #ffc3a0);
   color: white;
@@ -11,6 +14,7 @@ body {
   text-align: center;
   padding: 10px;
   overflow-x: hidden;
+  overflow-y: auto;
 display: flex;
   flex-direction: column;
   align-items: center;
@@ -255,24 +259,24 @@ function gift(){
 let score = 0;
 
 function startGame(){
-  document.getElementById("gameBox").style.display = "block";
   let game = document.getElementById("gameBox");
 
   game.style.display = "block";
 
-  // 📜 smooth scroll
-  game.scrollIntoView({ behavior: "smooth" });
+  // small delay so element renders before scroll
+  setTimeout(() => {
+    game.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 100);
 
-  // 💬 temporary hint text
+  // hint text
   let hint = document.createElement("p");
-  hint.innerText = "👇 click here to play 💖";
+  hint.innerText = "👇 Click below to play 💖";
   hint.style.color = "white";
 
   game.prepend(hint);
 
   setTimeout(() => hint.remove(), 3000);
 }
-
 function clickGame(){
   score++;
   document.getElementById("score").innerText = score;
