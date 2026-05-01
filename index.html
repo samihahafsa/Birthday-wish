@@ -90,6 +90,7 @@ img {
 <!-- PASSWORD -->
 <div id="passwordBox">
   <p>🔐 Enter password to continue pleaseeee:</p>
+  <p>🥺guess the password it's your favourite🥺</p>
   <input id="pass">
   <button onclick="checkPass()">Enter</button>
 </div>
@@ -122,7 +123,7 @@ img {
 
 <!-- PHOTO -->
 <div id="photo">
-  <h3>💖 Our Memory</h3>
+  <h3>💖 Our Best Memory</h3>
   <img src="https://i.imgur.com/qnDZQ1F.jpeg">
 </div>
 
@@ -188,7 +189,7 @@ function checkQuiz(){
       You are my best friend, my chaos partner, and my sister 😭💖<br><br>
       Thanks for every laugh, memory, and support 😂✨<br><br>
       Life would honestly be boring without you 🌸<br><br>
-      Stay amazing always 💫
+      Stay amazing always 💫 and click the butt
       </p>
     `;
 
@@ -196,7 +197,7 @@ function checkQuiz(){
     document.getElementById("photo").style.display = "block";
 
     // 💥 confetti burst on unlock
-    for(let i=0;i<300;i++){
+    for(let i=0;i<70;i++){
       let c = document.createElement("div");
       c.className = "confetti";
       c.style.left = Math.random()*100 + "vw";
@@ -234,7 +235,7 @@ function gift(){
   alert("🎁 Unlimited hugs + friendship unlocked 💖");
 
   // 💥 small burst (controlled, not crazy)
-  for(let i=0;i<80;i++){
+  for(let i=0;i<70;i++){
     let h = document.createElement("div");
     h.className = "confetti";
 
